@@ -1,6 +1,4 @@
 # smshell
- 
-HW3 - smallsh
 
 This program will create a small shell for the user to enter commands on. Most commands will be executed by exec() type functions, except for "cd", "status", and "exit", along with expanding every instance of "$$" to the current working PID number. 
 
