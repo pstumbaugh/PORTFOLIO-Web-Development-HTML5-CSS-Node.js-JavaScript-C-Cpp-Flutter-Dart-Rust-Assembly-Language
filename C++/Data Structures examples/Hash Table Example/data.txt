@@ -1,0 +1,14 @@
+Montley Fool: money stocks montley fool;https://www.fool.com;Gives Stock Advice; Lots of information, but hard to digest if new to stocks;3
+Yahoo Finance: stocks market news finance;https://finance.yahoo.com;News Stories on Finance and the stock market;Lots of links to news stories, and a main page with stories on it;4
+CNN Finance news world international market finance;https://www.cnn.com/business;Top Stories on Finance from Around the World;Many international articles on finance and how it will affect our market;3
+Google Stocks: search track stocks;https://www.google.com/finance;Easy Search engine for any stocks;Good if you have stocks and want to track;2
+Market Watch: stocks finance business news;https://www.marketwatch.com;MarketWatch provides the latest stock market, financial and business news;Great for information on stocks if you know the stock market well;1
+Bankrate: bank tools advice personal;https://www.bankrate.com;The Leading Personal Finance Destination for Rates, Tools, & Advice;Good for personal financial calculations, lots of calculators;4
+Seeking Alpha: stock market analysis earnings ETF;https://seekingalpha.com;Stock market Insights & financial analysis, including free earnings call transcripts, investment ideas and ETF & stock research written by finance experts;Lots of information, lots of good analysis, a bit much for me though;1
+CheetSheet: pop news celebrities worth;https://www.cheatsheet.com;Save Time. Live More;Fun to see pop news and celebrities and their their worth and what they're doing. Not great for any actual information though;1
+Investopedia: stock practice ;https://www.investopedia.com;Our mission is to simplify financial information and decisions so that our readers have the confidence to manage every aspect of their financial life;Fun to be able to do a mock stock market account and see how you can do;3
+Mint: personal spending bank account easy app;https://www.mint.com;Mint is versatile enough to help anyone’s money make sense without much effort;easy website / app to use, helps you keep track of your spending;5
+Money Morning: stock market experts investing;https://moneymorning.com;Money Morning gives you access to a team of ten market experts with more than 250 years of combined investing experience – for free;a more advanced money / stock / budgeting website if you know your way a little in the market;2
+Kiplinger: investing finance news ;https://www.kiplinger.com;Timely, Trusted Personal Finance Advice and Business Forecasts;Lots of free finance stories to read, nothing too in-depth;5
+Wise Bread: finance advice news;https://www.wisebread.com;Free personal finance advice and new articles;Website seems a little outdated, but good for some stories;1
+^
