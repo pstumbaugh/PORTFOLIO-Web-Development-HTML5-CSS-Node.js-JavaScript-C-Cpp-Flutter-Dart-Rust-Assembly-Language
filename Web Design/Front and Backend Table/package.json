@@ -1,0 +1,20 @@
+{
+  "name": "workouts",
+  "version": "1.0.0",
+  "description": "workout table using node.js and mysql",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "OSU",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^2.0.1",
+    "express-session": "^1.11.3",
+    "forever": "^3.0.4",
+    "http": "0.0.1-security",
+    "mysql": "^2.18.1"
+  }
+}

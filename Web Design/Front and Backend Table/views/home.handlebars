@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Workout Saver</title>
+    <link rel="stylesheet" href="./stylesheet.css">
+  </head>
+
+  <body>
+
+    <h1>MySQL Workouts Results:</h1>
+    <br>
+
+    <!--Display our current data table-->
+    <table id="currentTable">
+      <th>NAME</th>
+      <th>REPS</th>
+      <th>WEIGHT</th>
+      <th>DATE</th>
+      <th>UNIT TYPE</th>
+      {{#each dataList}}
+        <tr id="newRow">
+          <td id="name">{{this.name}}</td>
+          <td id="reps">{{this.reps}}</td>
+          <td id="weight">{{this.weight}}</td>
+          <td id="date">{{this.date}}</td>
+          <td id="unit">{{this.unit}}</td>
+          <td><button type="button" onclick="deleteRow('currentTable',this)">Delete</button></td>
+          <td><button type="button" onclick="location.href='http://flip3.engr.oregonstate.edu:8129/updateItem?id='+{{this.id}}">Update</button></td>
+          <td id="id" hidden>{{this.id}}</td>
+        </tr>
+      {{/each}}
+    </table>
+
+    <h3 id="noDataTag"></h3>
+
+
+    <br><br>
+
+    <form>
+      <fieldset>
+        <legend>Add a Workout</legend>
+        <label for="exerciseNameLabel">Exercise Name: </label>
+        <input type="text" name="exerciseName" id="exerciseName"></input>
+        <br>
+        <label for="repsLabel">Reps (number): </label>
+        <input type="text" name="reps" id="exerciseReps"></input>
+        <br>
+        <label for="weightLabel">Weight (number): </label>
+        <input type="text" name="weight" id="exerciseWeight"></input>
+        <br>
+        <label for="dateLabel">Date (year-month-day): </label>
+        <input type="text" name="date" id="exerciseDate"></input>
+        <br>
+        <label for="unitLabel">Unit Type: </label>
+        <input type="text" name="unit" id="exerciseUnit"></input>
+        <br>
+        <div id="exerciseAdderButton">
+        </div>
+        <div><b id="addErrorName"></b></div>
+        <div><b id="addErrorReps"></b></div>
+        <div><b id="addErrorWeight"></b></div>
+        <div><b id="addErrorDate"></b></div>
+        <div><b id="addErrorUnit"></b></div>
+        <span id="addSuccess"></span>
+      </fieldset>
+    </form>
+
+
+    <br>
+    <br>
+
+    <form>
+      <fieldset>
+        <legend>Reset data</legend>
+        <div id="exerciseResetButton">
+        </div>
+        <span></span><span id="resetCompleted"></span>
+      </fieldset>
+    </form>
+
+
+    <br>
+    <br>
+
+
+    <br><br><br><br>
+
+    <script src="./script.js"></script>
+
+  </body>
+
+</html>
+

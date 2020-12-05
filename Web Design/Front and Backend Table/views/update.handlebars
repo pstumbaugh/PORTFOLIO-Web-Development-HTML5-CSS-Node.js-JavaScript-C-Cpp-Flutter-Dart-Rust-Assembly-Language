@@ -1,0 +1,62 @@
+<body>
+
+  <head>
+    <title>Workout Saver - Update</title>
+    <link rel="stylesheet" href="./stylesheet.css">
+  </head>
+
+
+  <!--Display our current data table-->
+  <table id="currentTable">
+    <th>NAME</th>
+    <th>REPS</th>
+    <th>WEIGHT</th>
+    <th>DATE</th>
+    <th>UNIT TYPE</th>
+    {{#each dataList}}
+      <tr id="newRow">
+        <td id="originalName">{{this.name}}</td>
+        <td id="originalReps">{{this.reps}}</td>
+        <td id="originalWeight">{{this.weight}}</td>
+        <td id="originalDate">{{this.date}}</td>
+        <td id="originalUnit">{{this.unit}}</td>
+        <td id="originalId" hidden>{{this.id}}</td>
+      </tr>
+    {{/each}}
+  </table>
+
+  {{#if dataList}}
+  {{else}}
+    <h3 id="noDataTag"> No data in table to display</h3>
+  {{/if}}
+
+
+  <form>
+    <fieldset>
+      <legend>Which item(s) would you like to update? When finished, hit the Done button. Anything left blank will retain it's value.</legend>
+      <label for="exerciseNameLabel">Exercise Name: </label>
+      <input type="text" name="exerciseName" id="exerciseName">
+      <br>
+      <label for="repsLabel">Reps (number): </label>
+      <input type="text" name="reps" id="reps">
+      <br>
+      <label for="weightLabel">Weight (number): </label>
+      <input type="text" name="weight" id="weight">
+      <br>
+      <label for="dateLabel">Date (year-month-day): </label>
+      <input type="text" name="date" id="date">
+      <br>
+      <label for="unitLabel">Unit Type: </label>
+      <input type="text" name="unit" id="unit">
+      <br>
+      <div type="button" id="exerciseUpdateButton">
+      </div>
+      <button type="button" onclick="location.href='http://flip3.engr.oregonstate.edu:8129/'">Go Home</button>
+    </fieldset>
+  </form>
+
+  <br><br>
+
+  <script src="./updateScript.js"></script>
+</body>
+
