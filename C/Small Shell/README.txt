@@ -15,8 +15,6 @@ To run the file, type "./smallsh" in the command line. This will start the small
 
 Ending a command with "&" will send it to the background. You will receive a note of what the background PID number is. 
 
-A command line beginning with "#" will be treated as a comment, and nothing will happen.
-
 As mentioned earlier, "$$" will be expanded to show what the current PID number is. 
 
 You may use ">" and "<" as input and output redirection.
