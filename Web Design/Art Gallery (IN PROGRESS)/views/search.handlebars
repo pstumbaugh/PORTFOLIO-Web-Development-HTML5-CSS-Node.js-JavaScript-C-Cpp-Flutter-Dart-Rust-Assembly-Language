@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Art Gallery Database</title>
+  <meta charset="UTF=8">
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+
+<body class="body" id="searchBody">
+
+  <ul>
+    <li><button class="homeButton" type="button" onclick="location.href='/'">HOME</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/artists'">Artists</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/customers'">Customers</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/galleries'">Galleries</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/orders'">Orders</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/paintings'">Paintings</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/search'">Custom Search</button></li>
+  </ul>
+
+  <!-- Customer Search form -->
+  <h1>Custom Search:</h1>
+  <form>
+    <fieldset>
+      <legend>Search</legend>
+      <!-- List of checkbox and search types -->
+      <ul style="list-style-type:none;">
+        <li><input type="checkbox" id="customerSearch"> Customer Last Name</input>
+        <li><input type="checkbox" id="paintingSearch"> Painting Name</input>
+        <li><input type="checkbox" id="orderSearch"> Order ID</input>
+      </ul>
+      <input type="text" name="searchForm" id="searchForm"></input>
+      <br>
+      <div id="searchButton">
+      </div>
+    </fieldset>
+  </form>
+
+  <!--Search Results table - Gets data from backend json file in context.dataList -->
+  <h1>Search Results:</h1>
+  <table id="searchTable">
+    <thead>
+      <tr>
+        {{#each dataList.[0]}}
+        <!--Gets name of attributes-->
+        <th>{{@key}}</th>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each dataList}}
+      <tr>
+        {{#each this}}
+        <td>{{this}}</td>
+        <!--gets data sent in that attribute-->
+        {{/each}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <script src="searchScript.js"></script>
+</body>
+
+</html>

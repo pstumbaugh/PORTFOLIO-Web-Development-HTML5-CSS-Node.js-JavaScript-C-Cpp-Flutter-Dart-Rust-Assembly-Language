@@ -1,0 +1,54 @@
+<body class="body" id="galleriesBody">
+
+  <head>
+    <title>Online Art Gallery Database</title>
+    <meta charset="UTF=8">
+    <link rel="stylesheet" href="stylesheet.css" type="text/css">
+  </head>
+
+  <ul>
+    <li><button class="homeButton" type="button" onclick="location.href='/'">HOME</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/artists'">Artists</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/customers'">Customers</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/galleries'">Galleries</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/orders'">Orders</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/paintings'">Paintings</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/search'">Custom Search</button></li>
+  </ul>
+
+  <h1>Gallery Update (EXAMPLE):</h1>
+
+  <!--Display the item being updated -->
+  <table id="currentTable">
+    <th>Gallery ID</th>
+    <th>Gallery Name</th>
+    {{#each dataList}}
+    <tr id="newRow">
+      <td id="originalID">{{this.galleryID}}</td>
+      <td id="originalArtistFirstName">{{this.galleryName}}</td>
+    </tr>
+    {{/each}}
+  </table>
+  {{#if dataList}}
+  {{else}}
+  <h3 id="noDataTag"> No data in table to display</h3>
+  {{/if}}
+
+
+  <form>
+    <fieldset>
+      <legend> What would you like to update this gallery name to? When finished, hit the Done button. Anything left
+        blank will retain it's value.</legend>
+      <label for="galleryNameForm">Gallery name: </label>
+      <input type="text" name="galleryNameForm" id="galleryNameForm">
+      <br>
+      <!-- update button sends update request to server, then redirects back to the original page -->
+      <div type="button" id="updateButton" onclick="location.href='/galleries'">
+      </div>
+    </fieldset>
+  </form>
+
+  <br><br>
+
+  <script src="./updateGalleries.js"></script>
+</body>

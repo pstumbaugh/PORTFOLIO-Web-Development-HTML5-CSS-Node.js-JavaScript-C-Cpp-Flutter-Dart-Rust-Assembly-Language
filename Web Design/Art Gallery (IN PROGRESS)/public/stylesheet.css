@@ -1,0 +1,213 @@
+.body {
+  background-color: rgb(216, 216, 216);
+}
+
+/* TABLE style */
+table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+td {
+  padding: 10px 12px;
+}
+
+tr:nth-of-type(odd) {
+  border-bottom: 1px solid #dddddd;
+  background-color: #dbdbdb;
+
+}
+
+tr:nth-of-type(even) {
+  border-bottom: 1px solid #dddddd;
+  background-color: #f3f3f3;
+}
+
+tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+tr:hover{
+  font-weight: bold;
+  color: #009879;
+}
+
+th {
+  font-family: sans-serif;
+  background-color: white;
+  padding: 10px 13px;
+  background-color: #009879;
+  color: white;
+}
+
+th:first-of-type {
+  border-top-left-radius: 10px;
+}
+
+th:last-of-type {
+  border-top-right-radius: 10px;
+}
+/* end of TABLE style*/
+
+/* Checkbox style */
+input[type="checkbox" i] {
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 0px 0px 0px 0px;
+  padding: 0;
+  border: 0;
+  width: 5%;
+}
+
+ul{
+padding-inline-start: 5px;
+}
+
+/* end of Checkbox style*/
+
+/* FORM style */
+fieldset {
+  background-color: rgb(243, 243, 243);
+  width: 500px;
+}
+
+legend {
+  font-weight: bold;
+  background-color: #009879;
+  border-radius: 5px;
+  padding: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+  color: white;
+  font-size: 15;
+  font-family: sans-serif;
+  
+}
+
+form label{
+  font-family: sans-serif;
+  font-weight:unset;
+  padding: 10px;
+}
+
+form input {
+  width: 60%;
+}
+
+#requirement {
+  font-size: 15px;
+  text-align: right;
+}
+/* end of FORM style */
+
+
+
+h1 {
+  font-family:Bradley Hand, Florence, serif;
+  font-size: 30px;
+  text-transform: capitalize;
+  text-shadow: 0 0 3px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 3px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white;
+}
+
+.homePageButton {
+  background-color: rgb(94, 94, 94);
+  color: white;
+  border: solid;
+  border-color: rgb(48, 48, 48);
+  padding: 9px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  left: 20px;
+  position: relative;
+}
+
+.homePageButton:hover {
+  background-color: rgb(00, 196, 180);;
+  color: white;
+}
+
+.homeButton {
+  background-color: rgb(80, 80, 80);
+  color: white;
+  border: solid;
+  border-color: rgb(48, 48, 48);
+  padding: 9px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.homeButton:hover {
+  background-color: rgb(00, 196, 180);
+  color: white;
+}
+
+#homePageHeader {
+  font-family:Bradley Hand, Florence, serif;
+  font-size: 50px;
+  text-transform: capitalize;
+}
+
+#homePageBody {
+  background-image: url('./images/WhiteToLightBlue.jpg');
+  background-size: cover;
+}
+
+#artistsBody {
+  background-image: url('./images/DarkBlueToGreen.jpg');
+  background-size: cover;
+  background-blend-mode: soft-light;
+}
+
+#customersBody {
+  background-image: url('./images/lightBlueAndBlue.jpg');
+  background-size: cover;
+  background-blend-mode: soft-light;
+}
+
+#galleriesBody {
+  background-image: url('./images/lightGrenToDarkBlue.jpg');
+  background-size: cover;
+  background-blend-mode: soft-light;
+}
+
+#ordersBody {
+  background-image: url('./images/pinkAndGreenBlue.jpg');
+  background-size: cover;
+  background-blend-mode: soft-light;
+}
+
+#paintingsBody {
+  background-image: url('./images/whiteToDarkBlue.jpg');
+  background-size: cover;
+  background-blend-mode: soft-light;
+}
+
+#searchBody {
+  background-image: url('./images/2BlackYellow.jpg');
+  background-size: cover;
+  background-blend-mode: soft-light;
+}
+
+
+/* Navigation Bar */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+}
