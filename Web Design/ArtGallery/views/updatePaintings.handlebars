@@ -1,0 +1,106 @@
+<body class="body" id="paintingsBody">
+
+  <head>
+    <title>Online Art Gallery Database</title>
+    <meta charset="UTF=8">
+    <link rel="stylesheet" href="stylesheet.css" type="text/css">
+  </head>
+
+  <ul>
+    <li><button class="homeButton" type="button" onclick="location.href='/'">HOME</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/artists'">Artists</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/customers'">Customers</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/galleries'">Galleries</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/orders'">Orders</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/paintings'">Paintings</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/search'">Custom Search</button></li>
+  </ul>
+
+  <h1>Painting Update:</h1>
+
+  <!--Display the item being updated -->
+  <table id="currentTable">
+    <th>Painting ID</th>
+    <th>Artist</th>
+    <th>Art Type</th>
+    <th>Price</th>
+    <th>Gallery</th>
+    <th>Order ID</th>
+    {{#each dataList}}
+    <tr id="newRow">
+      <td>{{this.paintingID}}</td>
+      <td>{{this.artistFirstName}} {{this.artistLastName}}</td>
+      <td>{{this.artType}}</td>
+      <td>${{this.price}}</td>
+      <td>{{this.galleryName}}</td>
+      <td>{{this.orderID}}</td>
+    </tr>
+    {{/each}}
+  </table>
+  {{#if dataList}}
+  {{else}}
+  <h3 id="noDataTag"> No data in table to display</h3>
+  {{/if}}
+
+
+  <form>
+    <fieldset>
+      <legend>Which item(s) would you like to update? <br> Anything left blank will
+        retain it's value.</legend>
+
+      <label>Artist:</label>
+      <select id='artistIDForm'>
+        <option></option>
+        {{#each artists}}
+        <option id="artistIDForm" value="{{this.artistID}}">{{this.artistFirstName}} {{this.artistLastName}}
+        </option>
+        {{/each}}
+      </select>
+
+      <br>
+      <label for="artTypeForm">Art Type: </label>
+      <input type="text" name="artTypeForm" id="artTypeForm">
+      <br>
+
+      <label for="priceForm">Price: </label>
+      <input type="text" name="priceForm" id="priceForm">
+      <br>
+
+      <label>Gallery: </label>
+      <select id='galleryIDForm'>
+        <option></option>
+        {{#each gallery}}
+        <option id="galleryIDForm" value="{{this.galleryID}}">{{this.galleryName}}
+        </option>
+        {{/each}}
+      </select>
+      <br>
+
+      <label>Order Number: </label>
+      <select id='orderIDForm'>
+        <option></option>
+        <!-- -->
+        <option value="NULL">Remove painting from order (make nullable)</option>
+        {{#each orders}}
+        <option id="orderIDForm" value="{{this.orderID}}">{{this.orderID}}
+        </option>
+        {{/each}}
+      </select>
+
+      <br>
+
+      <span style="font-size:11px">*Note: If a painting is not already part of an order, selecting an order number will
+        add that painting to that order.</span>
+      <br><br>
+
+      <!-- update button sends update request to server, then redirects back to the original page -->
+      <div type="button" id="updateButton">
+      </div>
+    </fieldset>
+  </form>
+
+  <br><br>
+
+  <script src="portNumber.js"></script>
+  <script src="./updatePaintings.js"></script>
+</body>

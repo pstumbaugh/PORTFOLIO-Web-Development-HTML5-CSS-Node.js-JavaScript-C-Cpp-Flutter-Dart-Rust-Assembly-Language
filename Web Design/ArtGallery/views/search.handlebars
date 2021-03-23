@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Art Gallery Database</title>
+  <meta charset="UTF=8">
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+
+<body class="body" id="searchBody">
+
+  <ul>
+    <li><button class="homeButton" type="button" onclick="location.href='/'">HOME</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/artists'">Artists</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/customers'">Customers</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/galleries'">Galleries</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/orders'">Orders</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/paintings'">Paintings</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/search'">Custom Search</button></li>
+  </ul>
+
+  <!-- Customer Search form -->
+  <h1>Custom Search:</h1>
+  <br><br>
+  <form id="search" method="POST" action="/search" width= "75%">
+    <fieldset style="width:700px">
+      <legend>Search</legend>
+      <!-- List of checkbox and search types -->
+      <ul style="list-style-type:none;">
+        <li><input name="check" type="checkbox" id="customerSearch" value="Customers"> Customer Last Name</input>
+        <li><input name="check" type="checkbox" id="paintingSearch" value="Paintings"> Painting ID</input>
+        <li><input name="check" type="checkbox" id="orderSearch" value="Orders"> Order ID</input>
+        <li><input name="check" type="checkbox" id="artistSearch" value="Artists"> Artist Last Name</input>
+        <li><input name="check" type="checkbox" id="gallerySearch" value="Galleries"> Gallery ID</input>
+      </ul>
+      <br>
+      <input type="text" name="searchForm" id="searchForm" style="width:375px"></input>
+      <br>
+      <input type="submit" value="submit" style="width:191px">
+      </div>
+    </fieldset>
+  </form>
+
+  <!--Search Results table - Gets data from backend json file in context.dataList -->
+  <h1>Search Results:</h1>
+  <table id="searchTable">
+    <thead>
+      <tr>
+        {{#each dataList.[0]}}
+        <!--Gets name of attributes-->
+        <th>{{@key}}</th>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each error}}
+      <tr>
+        {{#each this}}
+        <td>{{this}}</td>
+        <!--gets data sent in that attribute-->
+        {{/each}}
+      </tr>
+      {{/each}}
+      {{#each dataList}}
+      <tr>
+        {{#each this}}
+        <td>{{this}}</td>
+        <!--gets data sent in that attribute-->
+        {{/each}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <script src="portNumber.js"></script>
+  <script src="searchScript.js"></script>
+</body>
+
+</html>

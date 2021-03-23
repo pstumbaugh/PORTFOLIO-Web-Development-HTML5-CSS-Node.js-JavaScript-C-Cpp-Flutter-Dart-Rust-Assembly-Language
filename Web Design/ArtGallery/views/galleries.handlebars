@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF=8">
+  <title>Online Art Gallery Database</title>
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+
+<body class="body" id="galleriesBody">
+
+  <ul>
+    <li><button class="homeButton" type="button" onclick="location.href='/'">HOME</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/artists'">Artists</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/customers'">Customers</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/galleries'">Galleries</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/orders'">Orders</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/paintings'">Paintings</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/search'">Custom Search</button></li>
+  </ul>
+
+  <h1>Galleries Results:</h1>
+
+  <!--Display our current data table-->
+  <table class="row" style="float: left;margin-right:30px" id="currentTable">
+    <th>Gallery ID</th>
+    <th>Gallery Name</th>
+    <th></th>
+    <th></th>
+
+    {{#each dataList}}
+    <tr id="newRow">
+      <td id="galleryID">{{this.galleryID}}</td>
+      <td id="galleryName">{{this.galleryName}}</td>
+
+      <td><button type="button" onclick="deleteID({{galleryID}})">Delete</button></td>
+      <td><button type="button" onclick="location.href='/galleriesUpdatePage?id='+{{this.galleryID}}">Update</button>
+
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+
+  <!-- If no information in table, show text saying no information -->
+  <h3 id="noDataTag"></h3>
+
+  <br><br>
+
+  <form>
+    <fieldset>
+      <legend>Add a Gallery</legend>
+      <label for="galleryNameLabel">*Gallery Name: </label>
+      <input type="text" name="galleryNameForm" id="galleryNameForm"></input>
+      <br>
+      <div id="galleryAdderButton">
+      </div>
+
+      <p id="requirement">* required entry</p>
+
+      <!-- display any missing NOT NULL items -->
+      <div><b id="addErrorNameGalleryName"></b></div>
+
+      <!-- display successfull add comment -->
+      <span id="addSuccess"></span>
+    </fieldset>
+  </form>
+
+  <script src="portNumber.js"></script>
+  <script src="galleriesScript.js"></script>
+</body>
+
+</html>

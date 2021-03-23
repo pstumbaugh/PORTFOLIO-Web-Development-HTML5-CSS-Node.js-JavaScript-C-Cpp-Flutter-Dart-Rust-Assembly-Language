@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Art Gallery Database</title>
+  <meta charset="UTF=8">
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+
+<body class="body" id="paintingsBody" id="more">
+
+  <ul>
+    <li><button class="homeButton" type="button" onclick="location.href='/'">HOME</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/artists'">Artists</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/customers'">Customers</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/galleries'">Galleries</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/orders'">Orders</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/paintings'">Paintings</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/search'">Custom Search</button></li>
+  </ul>
+
+  <h1>Paintings Results:</h1>
+
+  <!--Display our current data table-->
+  <table class="row" style="float: left;margin-right:30px" id="currentTable">
+    <th>Painting ID</th>
+    <th>Artist</th>
+    <th>Art Type</th>
+    <th>Price ($)</th>
+    <th>Gallery</th>
+    <th>Order ID</th>
+    <th></th>
+    <th></th>
+
+    {{#each dataList}}
+    <tr id="newRow">
+      <td id="paintingID">{{this.paintingID}}</td>
+      <td id="artistID">{{this.artistFirstName}} {{this.artistLastName}}</td>
+      <td id="artType">{{this.artType}}</td>
+      <td id="price">${{this.price}}</td>
+      <td id="galleryID">{{this.galleryName}}</td>
+      <td id="orderID">{{this.orderID}}</td>
+
+      <td><button type="button" onclick="deleteID({{paintingID}},{{orderID}},{{galleryID}})">Delete</button></td>
+      <td><button type="button" onclick="location.href='/paintingsUpdatePage?id='+{{this.paintingID}}">Update</button>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+
+  <!-- If no information in table, show text saying no information -->
+  <h3 id="noDataTag"></h3>
+
+  <br><br>
+
+  <form>
+    <fieldset>
+      <legend>Add a Painting</legend>
+
+      <label for='artistIDForm'>*Artist: </label>
+      <span>
+        <select id='artistIDForm'>
+          <option>Artists:</option>
+          {{#each artists}}
+          <option value="{{this.artistID}}">{{this.artistFirstName}} {{this.artistLastName}}
+          </option>
+          {{/each}}
+        </select>
+      </span>
+      <br>
+
+      <label for=" artTypeLabel">*Art Type: </label>
+      <input type="text" name="artTypeForm" id="artTypeForm"></input>
+      <br>
+      <label for="priceLabel">*Price (in $): </label>
+      <input type="text" name="priceForm" id="priceForm"></input>
+
+      <br>
+      <label for='galleryIDForm'>*Gallery: </label>
+      <span>
+        <select id='galleryIDForm'>
+          <option>Galleries:</option>
+          {{#each galleries}}
+          <option value="{{this.galleryID}}">{{this.galleryName}}
+          </option>
+          {{/each}}
+        </select>
+      </span>
+      <br>
+
+      <br>
+      <!-- DELETED FORM
+      <label for="orderIDLabel">Order ID: </label>
+      <input type="text" name="orderIDForm" id="orderIDForm"></input>
+      <br>
+      -->
+      <div id="paintingAdderButton">
+      </div>
+
+      <p id="requirement">* required entry</p>
+
+      <!-- display any missing NOT NULL items -->
+      <div><b id="addErrorNameArtistID"></b></div>
+      <div><b id="addErrorNameArtType"></b></div>
+      <div><b id="addErrorNamePrice"></b></div>
+      <div><b id="addErrorNameGalleryID"></b></div>
+      <div><b id="addErrorNameOrderID"></b></div>
+
+      <!-- display successfull add comment -->
+      <span id="addSuccess"></span>
+    </fieldset>
+  </form>
+
+  <script src="portNumber.js"></script>
+  <script src="paintingsScript.js"></script>
+</body>
+
+</html>

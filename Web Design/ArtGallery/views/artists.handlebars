@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Art Gallery Database</title>
+  <meta charset="UTF=8">
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+
+<body class="body" id="artistsBody">
+
+  <ul>
+    <li><button class="homeButton" type="button" onclick="location.href='/'">HOME</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/artists'">Artists</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/customers'">Customers</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/galleries'">Galleries</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/orders'">Orders</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/paintings'">Paintings</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/search'">Custom Search</button></li>
+  </ul>
+
+  <h1>Artists Results:</h1>
+
+  <!--Display our current data table-->
+  <table class="row" style="float: left;margin-right:30px" id="currentTable">
+    <th>Artist ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th></th>
+    <th></th>
+    {{#each dataList}}
+    <tr id="newRow">
+      <td id="artistID">{{this.artistID}}</td>
+      <td id="artistFirstName">{{this.artistFirstName}}</td>
+      <td id="artistLastName">{{this.artistLastName}}</td>
+
+      <!-- OLD version:
+      <td><button type="button" onclick="deleteRow('currentTable',this)">Delete</button></td>
+-->
+      <td><button type="button" onclick="deleteID({{artistID}})">Delete</button></td>
+      <td><button type="button" onclick="location.href='/artistsUpdatePage?id='+{{this.artistID}}">Update</button>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+  <!-- If no information in table, show text saying no information -->
+  <h3 id="noDataTag"></h3>
+
+  <br><br>
+
+  <form>
+    <fieldset>
+      <legend>Add an Artist</legend>
+      <label for="artistFirstNameLabel">Artist First Name: </label>
+      <input type="text" name="artistFirstNameForm" id="artistFirstNameForm"></input>
+      <br>
+      <label for="artistLastNameLabel">*Artist Last Name: </label>
+      <input type="text" name="artistLastNameForm" id="artistLastNameForm"></input>
+      <div id="artistAdderButton">
+      </div>
+
+      <p id="requirement">* required entry</p>
+
+      <!-- display any missing NOT NULL items -->
+      <div><b id="addErrorNameArtistFirstName"></b></div>
+      <div><b id="addErrorNameArtistLastName"></b></div>
+
+      <!-- display successfull add comment -->
+      <span id="addSuccess"></span>
+    </fieldset>
+  </form>
+
+  <script src="portNumber.js"></script>
+  <script src="artistsScript.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Art Gallery Database</title>
+  <meta charset="UTF=8">
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+
+<body class="body" id="ordersBody">
+
+  <ul>
+    <li><button class="homeButton" type="button" onclick="location.href='/'">HOME</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/artists'">Artists</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/customers'">Customers</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/galleries'">Galleries</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/orders'">Orders</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/paintings'">Paintings</button></li>
+    <li><button class="homeButton" type="button" onclick="location.href='/search'">Custom Search</button></li>
+  </ul>
+
+
+
+  <!--Display our current data table-->
+  <table class="row" id="currentTable" style="float: left;margin-right:30px">
+    <h1>Orders Results:</h1>
+
+    <th>Order ID</th>
+    <th>Customer</th>
+    <th></th>
+    <th></th>
+
+    {{#each dataList}}
+    <tr id="newRow">
+      <td id="orderID">{{this.orderID}}</td>
+      <td id="customerID">{{this.customerFirstName}} {{this.customerLastName}}</td>
+
+      <td><button type="button" onclick="deleteID({{orderID}})">Delete</button></td>
+      <td><button type="button" onclick="location.href='/ordersUpdatePage?id='+{{this.orderID}}">Update</button>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+
+
+  <!--Display our current data table for M:M relationship-->
+  <table class="row" style="float: left;margin-right:30px">
+    <h1>Orders To Galleries Results:</h1>
+
+    <th>Order ID</th>
+    <th>Gallery</th>
+    <th></th>
+
+    {{#each dataListMToM}}
+    <tr id="newRow">
+      <td id="orderID">{{this.orderID}}</td>
+      <td id="galleryID">{{this.galleryName}}</td>
+      <td><button type="button" , onclick="deleteOTG({{orderID}},{{galleryID}})">Delete Relationship</button></td>
+    </tr>
+    {{/each}}
+  </table>
+
+
+
+  <!-- If no information in table, show text saying no information -->
+  <h3 id="noDataTag"></h3>
+
+  <br><br>
+
+  <form>
+    <fieldset>
+      <legend>Add an Order</legend>
+      <label>(Order ID will auto-populate) </label><br>
+
+      <p>
+        <label for='customersToChoose'>*Customers:</label><br>
+        <select id='customersToChoose'>
+          <option>Choose customer:</option>
+          {{#each customers}}
+          <option id="customerIDForm" value="{{this.customerID}}">{{this.customerFirstName}} {{this.customerLastName}}
+          </option>
+          {{/each}}
+        </select>
+      </p>
+
+
+      <span>
+        <label for='paintingsToChoose1'>*Paintings Available (choose up to 5):</label><br>
+        <select id='paintingsToChoose1'>
+          <option>Choose painting 1:</option>
+          {{#each paintings}}
+          <option value="{{this.paintingID}}">{{this.paintingID}}:{{this.artType}}
+          </option>
+          {{/each}}
+        </select>
+      </span>
+      <br>
+
+      <span>
+        <select id='paintingsToChoose2'>
+          <option>Choose painting 2:</option>
+          {{#each paintings}}
+          <option value="{{this.paintingID}}">{{this.paintingID}}:{{this.artType}}
+          </option>
+          {{/each}}
+        </select>
+      </span>
+      <br>
+      <span>
+        <select id='paintingsToChoose3'>
+          <option>Choose painting 3:</option>
+          {{#each paintings}}
+          <option value="{{this.paintingID}}">{{this.paintingID}}:{{this.artType}}
+          </option>
+          {{/each}}
+        </select>
+      </span>
+      <br>
+      <span>
+        <select id='paintingsToChoose4'>
+          <option>Choose painting 4:</option>
+          {{#each paintings}}
+          <option value="{{this.paintingID}}">{{this.paintingID}}:{{this.artType}}
+          </option>
+          {{/each}}
+        </select>
+      </span>
+      <br>
+      <span>
+        <select id='paintingsToChoose5'>
+          <option>Choose painting 5:</option>
+          {{#each paintings}}
+          <option value="{{this.paintingID}}">{{this.paintingID}}:{{this.artType}}
+          </option>
+          {{/each}}
+        </select>
+      </span>
+      <br>
+
+
+
+      <!-- OLD VERSION
+      <label for="customerIDLabel">*Painting ID: (add up to 4 painting ID's, seperated by commas. Please ensure ID's are
+        correct)</label>
+      <input type="text" name="paintingsIDForm" id="paintingsIDForm"></input>
+      -->
+
+      <br>
+      <div id="orderAdderButton">
+      </div>
+
+      <p id="requirement">* required entry</p>
+
+      <!-- display any missing NOT NULL items -->
+      <div><b id="addErrorNameCustomerID"></b></div>
+      <!-- display any missing NOT NULL items -->
+      <div><b id="addErrorPaintingsID"></b></div>
+
+      <!-- display successfull add comment -->
+      <span id="addSuccess"></span>
+    </fieldset>
+  </form>
+
+
+
+
+
+  <br><br>
+  <script src="portNumber.js"></script>
+  <script src="ordersScript.js"></script>
+</body>
+
+</html>
