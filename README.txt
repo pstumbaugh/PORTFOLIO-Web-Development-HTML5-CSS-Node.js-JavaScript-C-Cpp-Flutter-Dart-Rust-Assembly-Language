@@ -3,3 +3,5 @@ Included are projects I've worked on for class, and projects I've made for frien
 Patrick Stumbaugh
 stumbaugh.patrick@gmail.com
 (650) 868-3189
+
+http://www.patrickstumbaugh.com
