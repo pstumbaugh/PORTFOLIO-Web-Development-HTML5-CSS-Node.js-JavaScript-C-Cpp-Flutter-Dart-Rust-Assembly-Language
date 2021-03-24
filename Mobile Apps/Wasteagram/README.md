@@ -22,7 +22,7 @@ Uploading image to database spinner:
 
 Display horizontally:
 
-![horizontal](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps%20(in%20progress)/Call%20Me%20Maybe/EXAMPLES/profile%20tab.png?raw=true)
+![horizontal](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Wasteagram/EXAMPLES/horizontal%20display.png?raw=true)
 
 
 
