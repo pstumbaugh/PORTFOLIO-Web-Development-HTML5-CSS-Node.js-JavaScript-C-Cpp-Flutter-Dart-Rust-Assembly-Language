@@ -1,5 +1,24 @@
 # Wasteagram
 
+Home Page (showing entries):
+
+![home](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Wasteagram/EXAMPLES/home%20page%20of%20entries.png?raw=true)
+
+
+Displaying an entry's details:
+
+![entry display](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Wasteagram/EXAMPLES/entry%20display.png?raw=true)
+
+
+
+Creating a new entry:
+
+![new entry](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Wasteagram/EXAMPLES/new%20entry.png?raw=true)
+
+
+![profile](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps%20(in%20progress)/Call%20Me%20Maybe/EXAMPLES/profile%20tab.png?raw=true)
+
+
 ![profile](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps%20(in%20progress)/Call%20Me%20Maybe/EXAMPLES/profile%20tab.png?raw=true)
 
 
