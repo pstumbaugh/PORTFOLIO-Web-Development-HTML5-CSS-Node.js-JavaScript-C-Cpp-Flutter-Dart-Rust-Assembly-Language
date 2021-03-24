@@ -1,28 +1,44 @@
 # Journal
 
-Displaying an entry's details:
-
-![entry display](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Wasteagram/EXAMPLES/entry%20display.png?raw=true)
+Screenshots:
 
 
-Displaying an entry's details:
+Main screen of entries (dark mode):
 
-![entry display](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Wasteagram/EXAMPLES/entry%20display.png?raw=true)
-
-
-Displaying an entry's details:
-
-![entry display](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Wasteagram/EXAMPLES/entry%20display.png?raw=true)
+![main screen](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Journal/EXAMPLES/main%20screen%20in%20dark%20mode.png?raw=true)
 
 
-Displaying an entry's details:
+Journal entry details page (dark mode):
 
-![entry display](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Wasteagram/EXAMPLES/entry%20display.png?raw=true)
+![je](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Journal/EXAMPLES/journal%20entry%20in%20dark%20mode.png?raw=true)
 
 
-Displaying an entry's details:
+New journal entry:
 
-![entry display](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Wasteagram/EXAMPLES/entry%20display.png?raw=true)
+![new](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Journal/EXAMPLES/new%20journal%20entry.png?raw=true
+)
+
+
+New journal entry validation errors:
+
+![new errors](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Journal/EXAMPLES/validation%20errors%20for%20new%20journal%20entry.png?raw=true)
+
+
+Dark mode option (to turn on):
+
+![dark option](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Journal/EXAMPLES/dark%20mode%20option.png?raw=true)
+
+
+Dark mode option (to turn off):
+
+![dark mode option off](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Journal/EXAMPLES/dark%20mode%20tab.png?raw=true)
+
+
+Horizontal orientation:
+
+![horz](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Mobile%20Apps/Journal/EXAMPLES/horizontal%20orientation.png?raw=true)
+
+
 
 
 Original Prompt:
