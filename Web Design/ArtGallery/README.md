@@ -62,4 +62,19 @@ Database Entity-Relationship Diagram (ERD) (original):
 ![erd](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Entity%20Relationship%20Diagram,%20Original.png?raw=true)
 
 
+Database Paintings table:
+
+![db paintings](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Database%20-%20Paintings%20table.png?raw=true)
+
+
+Database OrdersToGalleries table:
+
+![db OTG](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Database%20-%20OrdersToGalleries%20table.png?raw=true)
+
+
+Database Customers table:
+
+![db customers](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Database%20-%20Customers%20table.png?raw=true)
+
+
 
