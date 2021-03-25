@@ -1,4 +1,7 @@
 
+Art Gallery Database example
+
+
 Overview:
 
 An art corporation sells paintings from multiple galleries and requires a database to keep track of sales records of paintings from galleries to customers, including customerID and orderID. The database will also keep track of paintings that exist in each gallery as well as if a gallery contains paintings of a specific artist. Database is recorded and updated after an order has been placed. Database will be able to accommodate 200 orders annually. Our galleries can hold approximately 400 pieces of art for sale and the database will be able to accommodate approximately the listing and record of 10 years of paintings acquired and sold by the gallery at 4000. The site consists of 7 pages, Home, Artists, Customers, Galleries, Paintings, Orders, Custom Search. Artists, Customers, Galleries, Paintings, Orders pages are used to display current tables for each respective entity and for inserting, updating and deleting from each entity. The custom search page can be used to lookup a specific entry using a user inputted search from a user selected table.
@@ -20,6 +23,12 @@ To run program:
 To change the port number, change it in the following two locations:
     1) near the top of art.js where the variable "port" is declared.
     2) in the public folder, under the portNumber.js file. Change the "number" variable to the port you want
+
+
+
+Galleries Page:
+
+![galleries](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/GALLERIES.png?raw=true)
 
 
 
