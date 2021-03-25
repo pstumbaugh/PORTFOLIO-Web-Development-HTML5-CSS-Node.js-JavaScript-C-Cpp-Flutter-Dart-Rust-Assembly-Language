@@ -23,9 +23,10 @@ To run program:
 To change the port number, change it in the following two locations:
     1) near the top of art.js where the variable "port" is declared.
     2) in the public folder, under the portNumber.js file. Change the "number" variable to the port you want
+    
 
 
-Examples: 
+EXAMPLES of pages, database and graphs: 
 
 Galleries Page:
 
@@ -52,16 +53,6 @@ Search Page:
 ![search](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/SEARCH.png?raw=true)
 
 
-Database Schema (original):
-
-![schema](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Schema,%20Original.png?raw=true)
-
-
-Database Entity-Relationship Diagram (ERD) (original):
-
-![erd](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Entity%20Relationship%20Diagram,%20Original.png?raw=true)
-
-
 Database Paintings table:
 
 ![db paintings](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Database%20-%20Paintings%20table.png?raw=true)
@@ -75,6 +66,16 @@ Database OrdersToGalleries table:
 Database Customers table:
 
 ![db customers](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Database%20-%20Customers%20table.png?raw=true)
+
+
+Database Schema (original):
+
+![schema](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Schema,%20Original.png?raw=true)
+
+
+Database Entity-Relationship Diagram (ERD) (original):
+
+![erd](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Entity%20Relationship%20Diagram,%20Original.png?raw=true)
 
 
 
