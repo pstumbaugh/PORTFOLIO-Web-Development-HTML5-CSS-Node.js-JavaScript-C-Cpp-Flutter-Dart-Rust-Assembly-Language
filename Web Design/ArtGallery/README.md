@@ -25,10 +25,41 @@ To change the port number, change it in the following two locations:
     2) in the public folder, under the portNumber.js file. Change the "number" variable to the port you want
 
 
+Examples: 
 
 Galleries Page:
 
 ![galleries](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/GALLERIES.png?raw=true)
+
+
+Orders Page:
+
+![orders](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/ORDERS.png?raw=true)
+
+
+Paintings Page:
+
+![paintings](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/PAINTINGS.png?raw=true)
+
+
+Painting Update Page:
+
+![painting update](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/PAINTING%20UPDATE.png?raw=true)
+
+
+Search Page:
+
+![search](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/SEARCH.png?raw=true)
+
+
+Database Schema (original):
+
+![schema](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Schema,%20Original.png?raw=true)
+
+
+Database Entity-Relationship Diagram (ERD) (original):
+
+![erd](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/Entity%20Relationship%20Diagram,%20Original.png?raw=true)
 
 
 
