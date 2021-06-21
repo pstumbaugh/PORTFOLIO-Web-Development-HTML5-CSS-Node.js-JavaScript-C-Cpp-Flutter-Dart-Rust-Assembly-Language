@@ -1,12 +1,13 @@
 # Patrick Stumbaugh
-# Project 4 - Client/Server Chat
 
 # some coding for socket setup section cited from https://www.geeksforgeeks.org/simple-chat-room-using-python/
 
 # NOTE - Must use Python3.
 # To start program, start this server first by entering in command line:
 # python3 server.py
-# The client program will send the first message
+# Once that is running and awaiting messages, start this client program by entering:
+# python3 client.py
+# Use the client program to send the first message
 
 # --------SERVER---------
 
