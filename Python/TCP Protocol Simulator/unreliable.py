@@ -7,23 +7,25 @@ import random
 # Description:                                                                                                         #
 # This class is meant to be more of a blackbox but you are allowed to see the implementation. You are not allowed to   #
 # change anything in this file. There is also no need to base your algorithms on this particular implementation.       #
-#                                                                                                                      #
-#                                                                                                                      #
-# Notes:                                                                                                               #
-# This file is not to be changed.                                                                                      #
-#                                                                                                                      #
+#                                                                                                                      #                                                                                 #
 #                                                                                                                      #
 # #################################################################################################################### #
 
 
-class UnreliableChannel():
+class UnreliableChannel:
     RATIO_DROPPED_PACKETS = 0.1
     RATIO_DELAYED_PACKETS = 0.1
     RATIO_DATA_ERROR_PACKETS = 0.1
     RATIO_OUT_OF_ORDER_PACKETS = 0.1
     ITERATIONS_TO_DELAY_PACKETS = 5
 
-    def __init__(self, canDeliverOutOfOrder_, canDropPackets_, canDelayPackets_, canHaveChecksumErrors_):
+    def __init__(
+        self,
+        canDeliverOutOfOrder_,
+        canDropPackets_,
+        canDelayPackets_,
+        canHaveChecksumErrors_,
+    ):
         self.sendQueue = []
         self.receiveQueue = []
         self.delayedPackets = []
@@ -47,11 +49,11 @@ class UnreliableChannel():
     def receive(self):
         new_list = list(self.receiveQueue)
         self.receiveQueue.clear()
-        #print("UnreliableChannel len receiveQueue: {0}".format(len(self.receiveQueue)))
+        # print("UnreliableChannel len receiveQueue: {0}".format(len(self.receiveQueue)))
         return new_list
 
     def processData(self):
-        #print("UnreliableChannel manage - len sendQueue: {0}".format(len(self.sendQueue)))
+        # print("UnreliableChannel manage - len sendQueue: {0}".format(len(self.sendQueue)))
         self.currentIteration += 1
 
         if len(self.sendQueue) == 0:
@@ -114,7 +116,7 @@ class UnreliableChannel():
                 # count ack packets...
                 self.countAckPackets += 1
 
-            #print("UnreliableChannel len receiveQueue: {0}".format(len(self.receiveQueue)))
+            # print("UnreliableChannel len receiveQueue: {0}".format(len(self.receiveQueue)))
 
         self.sendQueue.clear()
-        #print("UnreliableChannel manage - len receiveQueue: {0}".format(len(self.receiveQueue)))
+        # print("UnreliableChannel manage - len receiveQueue: {0}".format(len(self.receiveQueue)))

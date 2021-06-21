@@ -7,21 +7,15 @@ from functools import reduce
 #                                                                                                                      #
 # Description:                                                                                                         #
 # The segment is a segment of data to be transferred on a communication channel.                                       #
-#                                                                                                                      #
-#                                                                                                                      #
-# Notes:                                                                                                               #
-# This file is not to be changed.                                                                                      #
-#                                                                                                                      #
-#                                                                                                                      #
+#                                                                                                                      #                                                                                                     #
 # #################################################################################################################### #
 
 
-class Segment():
-
+class Segment:
     def __init__(self):
         self.seqnum = -1
         self.acknum = -1
-        self.payload = ''
+        self.payload = ""
         self.checksum = 0
         self.startIteration = 0
         self.startDelayIteration = 0
@@ -37,7 +31,7 @@ class Segment():
     def setAck(self, ack):
         self.seqnum = -1
         self.acknum = ack
-        self.payload = ''
+        self.payload = ""
         self.checksum = 0
         str = self.to_string()
         self.checksum = self.calc_checksum(str)
@@ -55,15 +49,16 @@ class Segment():
         return self.startDelayIteration
 
     def to_string(self):
-        return "seq: {0}, ack: {1}, data: {2}"\
-            .format(self.seqnum, self.acknum, self.payload)
+        return "seq: {0}, ack: {1}, data: {2}".format(
+            self.seqnum, self.acknum, self.payload
+        )
 
     def checkChecksum(self):
         cs = self.calc_checksum(self.to_string())
         return cs == self.checksum
 
     def calc_checksum(self, str):
-        return reduce(lambda x, y: x+y, map(ord, str))
+        return reduce(lambda x, y: x + y, map(ord, str))
 
     def printToConsole(self):
         print(self.to_string())
@@ -73,4 +68,4 @@ class Segment():
         if not self.payload:
             return
         char = random.choice(self.payload)
-        self.payload = self.payload.replace(char, 'X', 1)
+        self.payload = self.payload.replace(char, "X", 1)
