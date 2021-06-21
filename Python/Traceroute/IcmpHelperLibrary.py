@@ -1,11 +1,7 @@
 # Patrick Stumbaugh
-# Project 3 - Traceroute
-
-# No additional sources uesed besides skeleton code
 
 # I rebuilt the "sendEchoRequest()" function for the traceroute program, in order to change some of
 # the print statements and variables used so that it's more readable as a traceroute and not a ping program
-
 
 # #################################################################################################################### #
 # Imports                                                                                                              #
