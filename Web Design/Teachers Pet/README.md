@@ -1,6 +1,6 @@
 This web application is split into two sections:
 
-\*Note - The web app is on the OSU server and requires the OSU VPN access to view website and use microservice.
+\*Note - The web app is on the OSU server and requires the OSU VPN access to view website and use microservice. Please view example pictures below to see final output. Also, this project was meant as practice in microservice architecture and back-end work, thus the front-end of the website is a fairly simple design.
 
 1. Web app home page:
    This web app is designed to give teachers suggestions for topics their students can research all based around
