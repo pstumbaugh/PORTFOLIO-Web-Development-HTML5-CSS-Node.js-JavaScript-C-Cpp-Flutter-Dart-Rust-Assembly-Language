@@ -43,4 +43,5 @@ DIRECTORY:
         Art Gallery
         Portfolio Website
         Portland Hikers Guide
+        Teacher's Pet web app and Thumbnail Transformer microservice
 
