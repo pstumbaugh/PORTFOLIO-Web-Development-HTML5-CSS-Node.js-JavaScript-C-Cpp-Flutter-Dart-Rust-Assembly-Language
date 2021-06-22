@@ -1,4 +1,4 @@
-This web application is split into two sections:
+This web application is split into two sections: 
 
 *Note - The web app is on the OSU server and requires the OSU VPN access to view website and use microservice.
 
@@ -39,3 +39,17 @@ This web application is split into two sections:
     2. In the same "SERVICE" folder, enter on console: "node receiveTest.js"
         *- This will consume message from the service (where the messages have been sent to the exchange).
         *- When a message is received, you'll see it save your files as "NewUrlThumbnail.jpg"
+
+Examples of Teacher's Pet:
+
+Main screen:
+
+![main screen](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Flutter-Dart-Rust-Assembly-Language/blob/main/Web%20Design/Teachers%20Pet/EXAMPLE%20IMAGES/mainPage.png)
+
+Loading Screen:
+
+![loading](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Flutter-Dart-Rust-Assembly-Language/blob/main/Web%20Design/Teachers%20Pet/EXAMPLE%20IMAGES/loading.png)
+
+Results screen:
+
+![results](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Flutter-Dart-Rust-Assembly-Language/blob/main/Web%20Design/Teachers%20Pet/EXAMPLE%20IMAGES/exampleResults.png)
