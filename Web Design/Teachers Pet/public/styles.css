@@ -1,0 +1,260 @@
+/*Fades an item in*/
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*Fades an item out*/
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/*Fades an item from full to half*/
+
+@keyframes fadeDownHalf {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+
+/*Fades an item from half to full*/
+
+@keyframes fadeUpHalf {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#loader {
+    border: 8px solid #666; /* Light grey */
+    border-top: 8px solid #65e46a;
+    border-right: 8px solid #666;
+    border-bottom: 8px solid #65e46a;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    position: relative;
+    margin-top: -350px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: -1;
+    opacity: 0;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#body {
+    background-color: white;
+    text-align: center;
+    background-image: url("./images/bubbles.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 400px;
+}
+
+a {
+    text-shadow: -1px 1px 0 #65e46a;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.errorText {
+    font-size: 10px;
+    color: red;
+}
+
+#main {
+    z-index: 0;
+}
+
+#results {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    margin-top: -400px;
+    left: 0;
+    right: 0;
+}
+
+#pageTitle {
+    position: relative;
+    max-width: 70%;
+}
+
+#goButton {
+    background-image: url("./images/goButton.png");
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    border-style: hidden;
+    border-radius: 50%;
+}
+
+#goButton:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#goButton:hover {
+    box-shadow: 0 1px #45a049;
+}
+
+#mainPageBox {
+    background: rgba(196, 196, 196, 0.17000000178813934);
+    width: 246px;
+    height: 150px;
+}
+
+.sectionTitle {
+    color: #1e411f;
+    text-shadow: -1px 1px 0 #65e46a;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    font-size: 40px;
+}
+
+label {
+    color: #1e411f;
+    text-shadow: -0.5px 1px 0 #65e46a;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    font-size: 15px;
+}
+
+.mainPageFormIdeaNumber {
+    width: 100px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.mainPageFormWikiTerm {
+    width: 500px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* RESULTS PAGE: */
+
+#startOverContainer {
+    position: relative;
+    height: 111px;
+    width: 392px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    padding-top: 20px;
+}
+
+#startOverButton {
+    background-image: url("./images/startOverButton.png");
+    width: 80%;
+    height: 80%;
+    background-size: cover;
+    border-style: solid;
+    border-color: darkslategrey;
+}
+
+#startOverButton:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#startOverButton:hover {
+    box-shadow: 0 1px #45a049;
+}
+
+#resultsContainer {
+    position: relative;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 30px;
+}
+
+#resultsLeft {
+    width: 50%;
+    background-color: rgb(208, 252, 208);
+    margin-left: auto;
+    margin-right: 40%;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    border-color: grey;
+    border-style: solid;
+}
+
+#resultsRight {
+    width: 30%;
+    background-color: rgb(208, 252, 208);
+    margin-left: 65%;
+    margin-right: auto;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    border-color: grey;
+    border-style: solid;
+}
+
+.resultsTableBox {
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(196, 196, 196, 0.17000000178813934);
+    width: 95%;
+    height: 150px;
+    padding-top: 3px;
+    overflow-y: scroll;
+}
+
+#resultsLinksTitle {
+    float: left;
+    padding-left: 20px;
+}
+
+.resultsTitle {
+    float: left;
+    padding-left: 20px;
+    color: #1e411f;
+    text-shadow: -1px 1px 0 #65e46a;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    font-size: 25px;
+    text-align: left;
+}

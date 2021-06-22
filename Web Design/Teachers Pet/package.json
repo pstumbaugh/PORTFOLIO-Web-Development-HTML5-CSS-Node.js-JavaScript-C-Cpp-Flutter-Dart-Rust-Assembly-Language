@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "ampq": "^2019.5.11",
+    "amqplib": "^0.8.0",
+    "body-parser": "^1.19.0",
+    "browserfy": "^1.0.0",
+    "browserify": "^17.0.0",
+    "cheerio": "*",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.1",
+    "node-wiki": "*",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "underscore": "^1.13.1",
+    "urllib": "^2.37.1",
+    "wikipedia": "^1.1.1"
+  }
+}

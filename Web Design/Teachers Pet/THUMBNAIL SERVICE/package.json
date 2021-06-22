@@ -1,0 +1,33 @@
+{
+  "name": "thumbnailnode",
+  "version": "1.0.0",
+  "main": "resize.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/storage": "^5.8.5",
+    "amqplib": "^0.7.1",
+    "body-parser": "^1.19.0",
+    "canvas": "^2.7.0",
+    "express": "^4.17.1",
+    "fetch": "^1.1.0",
+    "firebase": "^8.5.0",
+    "forever": "^3.0.4",
+    "image-downloader": "^4.0.2",
+    "image-thumbnail": "^1.0.13",
+    "multer": "^1.4.2",
+    "node": "^16.1.0",
+    "node-fetch": "^2.6.1",
+    "rabbitmq": "^0.0.2",
+    "rabbitmq-easy": "^0.5.5",
+    "rabbitmq-node": "^0.5.0",
+    "request": "^2.88.2",
+    "sharp": "^0.28.1"
+  },
+  "description": ""
+}

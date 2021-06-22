@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher's Pet</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body id="body">
+
+
+
+    <!-- Title section -->
+    <!-- OLD: <div id="pageTitle">Teacher's Pet</div> --->
+    <img id="pageTitle" src="./images/title.png">
+    </div>
+    <br>
+
+<div id="main">
+    <!-- main section -->
+    <div class="sectionTitle">How many ideas would you like? </div>
+    <form>
+        <input type="number" class="mainPageFormIdeaNumber" id="ideaSize" name="ideaSize" placeholder="25" min="1"
+            step="1" pattern="[0-9]"></input>
+        <br>
+        <span class="errorText" id="ideaSizeError"></span>
+        <br>
+        <input type="checkbox" id="redirectOption" name="redirectOption">
+        <label id="redirectOption" for="redirectOption">Precision (more specific, but fewer results)</label><br>
+        <br>
+    </form>
+
+    <div class="sectionTitle">Enter keyword to search:</div>
+    <form>
+        <input type="text" class="mainPageFormWikiTerm" id="wikiTermEntry" name="wikiTermEntry"
+            placeholder="Peanut Butter"></input>
+        <br>
+        <span class="errorText" id="wikiTermEntryError"></span>
+        <br>
+    </form>
+
+    <!-- buttons on bottom -->
+    <button id="goButton"></button>
+    <br>
+    <br>
+</div>
+
+
+
+
+<div id="results">
+    <!-- main section -->
+    <table id="resultsContainer">
+        <th id="resultsLeft">
+            <span class="resultsTitle" id="resultsLinksTitle" onload="getResultsTitle()"></span>
+            <div class="resultsTableBox" id="resultsLinksBox">
+            </div>
+            <br>
+            <div class="resultsTitle" id="resultsWordsTitle" onload="getWordsTitle()"></div>
+            <div class="resultsTableBox" id="resultsWordsBox"></div>
+        </th>
+        <th id="resultsRight">
+            <div>Picture of item here</div>
+        </th>
+    </table>
+
+    <!-- buttons on bottom -->
+    <div id='startOverContainer'>
+        <button id="startOverButton"></button>
+    </div>
+    <!-- not yet implementing: <div id=mainPageBox></div> -->
+</div> 
+
+
+
+<div id="loader"></div>
+
+    <!-- Javascript files in use: -->
+    <script type="text/javascript " src="index.js"></script>
+    <script src="portNumber.js"></script>
+</body>
+
+</html>
