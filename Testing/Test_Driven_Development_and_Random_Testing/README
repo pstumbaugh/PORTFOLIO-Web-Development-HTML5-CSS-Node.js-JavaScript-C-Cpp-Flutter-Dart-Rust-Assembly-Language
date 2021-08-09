@@ -1,0 +1,10 @@
+This program tests to see if a password matches a specific criteria (as defined
+ in check_pwd.py). If the password passes, the function returns true. The
+ testing suite will cover calling the function to test.
+
+The function check_pwd.py was developed using Test Driven Development. That is,
+ I started with creating tests in tests.py that should fail, then adjusting
+ check_pwd.py to check for that failed test and return False.
+
+Tests.py includes both manually created tests as well as random tests (at the
+bottom of the testing suite). 
