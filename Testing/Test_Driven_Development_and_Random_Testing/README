@@ -1,5 +1,5 @@
 This program tests to see if a password matches a specific criteria (as defined
- in check_pwd.py). If the password passes, the function returns true. The
+ below). If the password passes, the function returns true. The
  testing suite will cover calling the function to test.
 
 The function check_pwd.py was developed using Test Driven Development. That is,
@@ -7,4 +7,15 @@ The function check_pwd.py was developed using Test Driven Development. That is,
  check_pwd.py to check for that failed test and return False.
 
 Tests.py includes both manually created tests as well as random tests (at the
-bottom of the testing suite). 
+bottom of the testing suite).
+
+
+Requirements:
+    check_pwd accepts a string and returns True if it meets the criteria listed
+     below, otherwise it returns False:
+        Must be between 8 and 20 characters (inclusive)
+        Must contain at least one lowercase letter
+        Must contain at least one uppercase letter
+        Must contain at least one digit
+        Must contain at least one symbol from: ~`!@#$%^&*()_+-=
+    It is assumed only strings will be passed to check_pwd
