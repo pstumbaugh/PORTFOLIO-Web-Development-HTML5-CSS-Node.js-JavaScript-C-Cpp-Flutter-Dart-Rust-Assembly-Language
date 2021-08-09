@@ -1,0 +1,9 @@
+
+The goal for this project was to implement the 3 functions (specified in
+requirements file) in a continuous integration workflow. My team consisted of
+three members, each taking on a specific function. My portion was assigned to
+function 2, my_datetime().
+
+Each team member also created a testing suite (inside tests.py) to cover tests
+for their assigned function. I did a mix of manual tests along with random
+testing.
