@@ -1,4 +1,5 @@
-Please see api documentation for all notes and instructions on how to use API and Postman tests
+*See api documentation for all notes and instructions on how to use API and Postman tests
+Please note - This limited term project that is hosted on Google Cloud and may or may not be running if you try to access it (either from login URL or through Postman collection tests). Running it locally will require API keys which are private to the owner of this project (Patrick Stumbaugh).
 
 
 This API was designed around the idea of creating a common database for winery owners to keep track of their wineries and the wines those wineries produce. A user must login with their credentials in order to access the information stored associated with their account. 
