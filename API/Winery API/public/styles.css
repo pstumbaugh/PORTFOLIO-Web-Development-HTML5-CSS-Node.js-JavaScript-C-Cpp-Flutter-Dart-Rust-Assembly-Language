@@ -1,0 +1,31 @@
+body {
+    background: lightgrey;
+    margin: auto;
+    width: 70%;
+    text-align: center;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+#homePageHeader {
+    font-style: italic;
+}
+
+#googleRequestSubmitButton {
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 100px;
+    height: 35px;
+    margin: auto;
+    font-size: 16px;
+}
+
+#googleRequestSubmitButton:hover {
+    background-color: black;
+    color: white;
+}
+
+.resultOption {
+    font-weight: bold;
+    font-style: italic;
+}

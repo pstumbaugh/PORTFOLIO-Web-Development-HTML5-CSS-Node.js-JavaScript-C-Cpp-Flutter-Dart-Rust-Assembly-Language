@@ -1,0 +1,44 @@
+<!--  -->
+<html>
+
+    <body class="body" id="homePageBody">
+
+        <br />
+        <h4 id="homePageHeader">Final Project: Winery Co-op</h4>
+        <h1 id="homePageSubHeader">Welcome!</h1>
+
+        <div>
+            <p>This project represents the final project for Patrick Stumbaugh. It implements a REST
+                API that uses proper resource based URLs, pagination, status codes and
+                authorization/authentication, .</p>
+            <p>Once you click the "Submit" button below, you information provided will be registered
+                at Auth0. You will be redirected to an informational page with the new user's JWT
+                issued by Auth0. That information can be used when running requests (via Postman).
+            </p>
+            <p>The overall conecept of this project is a winery co-op for winery owners. A user will
+                be able to send requests to the system, where they can use all CRUD operations on
+                different wineries they own and the wines they make.
+            </p>
+        </div>
+
+        <form>
+            <label for="email">Email:</label><br />
+            <input type="email" id="email" /><br />
+            <label for="password">Password:</label><br />
+            <input type="password" id="password" />
+        </form>
+        <button id="googleRequestSubmitButton" onclick="googleAuthRequestClick()">Submit</button>
+
+        <nav class="w3-bar w3-border w3-light-grey" role="navigation">
+            <br /><a class="w3-bar-item w3-button" id="qsLoginBtn" href="/login2">New User
+                Registration</a>
+            <br />
+            <br /><a class="w3-bar-item w3-button" id="qsLoginBtn" href="/logout">User Logout</a>
+
+        </nav>
+        <br />
+        <script src="script.js"></script>
+
+    </body>
+
+</html>

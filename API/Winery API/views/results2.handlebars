@@ -1,0 +1,32 @@
+<br />
+<h1>Successfully retrieved token from your profile!</h1>
+
+<p>
+
+    <a class="resultOption">Access Token:</a><br />
+    <td>{{access_token}}</td>
+    <br />
+    <br />
+    <a class="resultOption">ID Token:</a><br />
+    <td>{{id_token}}</td>
+    <br />
+    <br />
+    <p>While using Postman, please use your email and password when logging in to aquire your ID
+        Token. You can then use the above ID token as a bearer token to access your data.</p>
+    <p>*please note - if you copy the ID Token, be sure it pastes without a new line character at
+        the end, otherwise it will not work</p>
+    <br />
+    <a class="resultOption">Expires in:</a><br />
+    <td>{{expires_in}}</td>
+    <br />
+    <br />
+    <a class="resultOption">Token Type:</a><br />
+    <td>{{token_type}}</td>
+    <br />
+    <br />
+    <br />
+    <button id="goHome" onclick="goHome()">Go home</button>
+
+</p>
+
+<script src="script.js"></script>

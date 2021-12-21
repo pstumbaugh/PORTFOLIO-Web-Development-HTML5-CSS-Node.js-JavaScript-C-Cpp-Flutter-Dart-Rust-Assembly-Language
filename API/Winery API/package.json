@@ -1,0 +1,35 @@
+{
+  "name": "winery_coop",
+  "version": "1.0.0",
+  "description": "Website address:",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Patrick Stumbaugh",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/datastore": "^6.2.0",
+    "axios": "^0.24.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "express-jwt": "^6.1.0",
+    "express-session": "^1.17.2",
+    "google-gax": "^2.9.2",
+    "json-to-html": "^0.1.2",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^1.6.0",
+    "morgan": "^1.10.0",
+    "passport": "^0.5.0",
+    "passport-auth0": "^1.4.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  }
+}

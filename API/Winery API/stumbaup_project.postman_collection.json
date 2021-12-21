@@ -1,0 +1,4707 @@
+{
+	"info": {
+		"_postman_id": "08633757-dfca-46c1-a227-b5e7bbc92914",
+		"name": "Winery Co-op",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UTIL - delete all wineries",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/deleteAll",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"deleteAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UTIL - delete all wines",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines/deleteAll",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"deleteAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all wineries MISSING TOKEN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token trying to get all wineries from this owner.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Baz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"jwt1\", pm.response.json()[\"id_token\"]);",
+							"",
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"check for id_token\", function () {",
+							"     pm.expect(pm.response.json()[\"id_token\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"baz@bop.com\",\n    \"password\": \"Abc123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Pat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"jwt2\", pm.response.json()[\"id_token\"]);",
+							"",
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"check for id_token\", function () {",
+							"     pm.expect(pm.response.json()[\"id_token\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"pat@foo.com\",\n    \"password\": \"Pat10001\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"winery_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery A\",\n    \"grapeType\": \"Red\",\n    \"numVarieties\": 3,\n    \"region\": \"Willamette Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery MISSING AUTH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token while creating a new winery.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery A\",\n    \"grapeType\": \"Red\",\n    \"numVarieties\": 3,\n    \"region\": \"Willamette Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery MISSING ATTR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"let result = pm.response.json();",
+							"let result2 = result[\"Error\"];",
+							"let result3 = result2[0]",
+							"",
+							"//check at least one validation error message sent",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(result3).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery BAD FORMAT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"415 status code\", function () {",
+							"    pm.response.to.have.status(415);",
+							"});",
+							"",
+							"pm.test(\"415 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Server only accepts application/json data.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<root>\n\t<name>Winery A</name>\n\t<grapeType>Red</grapeType>\n\t<numVarieties>3</numVarieties>\n\t<region>Willamette Valley</region>\n</root>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr MISSING ATTR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"400 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Missing one or more attributes. For a PUT request, all attributes must be given.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr BAD ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"404 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"No winery with this winery_id found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery Z\",\n    \"grapeType\": \"White\",\n    \"numVarieties\": 1,\n    \"region\": \"Napa Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/42",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr BAD ATTR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"let result = pm.response.json();",
+							"let result2 = result[\"Error\"];",
+							"let result3 = result2[0]",
+							"",
+							"//check at least one validation error message sent",
+							"pm.test(\"400 error message\", function () {",
+							"     pm.expect(result3).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery Z lkjdfalksdjflakdjflakjdslfkajldsfkjalsdkjfalksdjfalksdjf\",\n    \"grapeType\": \"works\",\n    \"numVarieties\": 0,\n    \"region\": \"Napa Valley laksdjflakjsd;flakjsd;flielnakldnv aldjfalsjdf;iajs; dflk\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr MISSING AUTH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token when trying to update a winery.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery Z\",\n    \"grapeType\": \"White\",\n    \"numVarieties\": 1,\n    \"region\": \"Napa Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr DIFFERENT OWNER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Invalid winery owner. Only the winery’s owner can edit this winery\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery Z\",\n    \"grapeType\": \"White\",\n    \"numVarieties\": 1,\n    \"region\": \"Napa Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery Z\",\n    \"grapeType\": \"White\",\n    \"numVarieties\": 1,\n    \"region\": \"Napa Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr BAD ATTR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"let result = pm.response.json();",
+							"let result2 = result[\"Error\"];",
+							"let result3 = result2[0]",
+							"",
+							"//check at least one validation error message sent",
+							"pm.test(\"400 error message\", function () {",
+							"     pm.expect(result3).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numVarieties\" : 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr NO ATTR (should work)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr MISSING AUTH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token when trying to update a winery.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr BAD ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"404 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"No winery with this winery_id found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery H\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/56",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"56"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr DIFFERENT OWNER Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Invalid winery owner. Only the winery’s owner can edit this winery\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery Z\",\n    \"grapeType\": \"White\",\n    \"numVarieties\": 1,\n    \"region\": \"Napa Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery H\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get wineries baz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"200 success response\", function () {",
+							"    pm.expect(pm.response.json()[\"Total_Number_of_Wineries_in_Collection\"]).to.be.above(0);",
+							"    pm.expect(pm.response.json()[\"next\"]).to.eq(undefined); //only one winery, no next button",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get wineries baz DIFFERENT OWNER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"200 success response\", function () {",
+							"    pm.expect(pm.response.json()[\"Total_Number_of_Wineries_in_Collection\"]).to.eq(0); //we haven't added wineries for Pat yet",
+							"    pm.expect(pm.response.json()[\"next\"]).to.eq(undefined); //no wineries, no next button",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get winery by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//check winery attributes changed to",
+							"pm.test(\"200 success response\", function () {",
+							"    pm.expect(pm.response.json()[\"numVarieties\"]).to.eq(1);",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Winery H\");",
+							"    pm.expect(pm.response.json()[\"grapeType\"]).to.eq(\"White\");",
+							"    pm.expect(pm.response.json()[\"region\"]).to.eq(\"Napa Valley\");",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get winery by id DIFFERENT OWNER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Invalid winery owner. Only the winery’s owner can get this winery\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get winery by id BAD ACCEPT TYPE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});",
+							"",
+							"pm.test(\"406 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Requested (Accept) content type not available\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get winery MISSING TOKEN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token trying to get all wineries from this owner.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get winery BAD ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"404 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Cannot find winery with this winery_id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/55",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"55"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete winery baz BAD AUTH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token while trying to delete a winery.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete winery baz DIFFERENT OWNER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Invalid winery owner. Only the winery's owner can delete this winery\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete winery baz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"winery_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery A\",\n    \"grapeType\": \"Red\",\n    \"numVarieties\": 3,\n    \"region\": \"Willamette Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"winery_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery B\",\n    \"grapeType\": \"Red\",\n    \"numVarieties\": 3,\n    \"region\": \"Willamette Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"winery_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery C\",\n    \"grapeType\": \"Red\",\n    \"numVarieties\": 3,\n    \"region\": \"Willamette Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"winery_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery D\",\n    \"grapeType\": \"Red\",\n    \"numVarieties\": 3,\n    \"region\": \"Willamette Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"winery_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery E\",\n    \"grapeType\": \"Red\",\n    \"numVarieties\": 3,\n    \"region\": \"Willamette Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"winery_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery F\",\n    \"grapeType\": \"Red\",\n    \"numVarieties\": 3,\n    \"region\": \"Willamette Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get wineries baz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"200 success response\", function () {",
+							"     pm.expect(pm.response.json()[\"Total_Number_of_Wineries_in_Collection\"]).to.eq(6);",
+							"     pm.expect(pm.response.json()[\"next\"]).not.eq(undefined);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit winery attr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery H\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new wine",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"wine_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine A\",\n    \"type\": \"Merlot\",\n    \"year\": 2015,\n    \"price\": 50\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new wine BAD TYPE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"415 status code\", function () {",
+							"    pm.response.to.have.status(415);",
+							"});",
+							"",
+							"pm.test(\"415 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Server only accepts application/json data.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<root>\n\t<name>Wine A</name>\n\t<type>Merlot</type>\n\t<year>2015</year>\n\t<price>50</price>\n</root>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new wine MISSING ATTR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"400 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine A\",\n    \"type\": \"Merlot\",\n    \"year\": 915\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all wines",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"200 success response\", function () {",
+							"    pm.expect(pm.response.json()[\"Total_Number_of_Wines_in_Collection\"]).to.be.above(0);",
+							"    pm.expect(pm.response.json()[\"next\"]).to.eq(undefined); //only one winery, no next button",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all wines BAD AUTH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token trying to get all wines from this owner.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all wines BAD HEADER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token trying to get all wines from this owner.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/wines",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get wine by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//check winery attributes changed to",
+							"pm.test(\"200 success response\", function () {",
+							"    pm.expect(pm.response.json()[\"type\"]).to.eq(\"Merlot\");",
+							"    pm.expect(pm.response.json()[\"year\"]).to.eq(2015);",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Wine A\");",
+							"    pm.expect(pm.response.json()[\"price\"]).to.eq(50);",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get wine by DIFFERENT OWNER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Invalid wine owner. Only the wine's owner can get this wine\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get wine by id BAD ACCEPT TYPE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});",
+							"",
+							"pm.test(\"406 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Requested (Accept) content type not available\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get wine by id BAD AUTH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token trying to get all wines from this owner.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get wine by id BAD ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token trying to get all wines from this owner.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/555",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"555"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete wine baz BAD ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"404 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"JWT valid, but could not find wine with this wine id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines/15",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete wine baz BAD AUTH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token while trying to delete a wine.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete wine baz DIFFERENT OWNER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Invalid wine owner. Only the wine's owner can delete this wine\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete wine baz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new wine Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"wine_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine A\",\n    \"type\": \"Merlot\",\n    \"year\": 2015,\n    \"price\": 50\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Wine attr BAD AUTH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token when trying to update a wine.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine Z\",\n    \"type\": \"White\",\n    \"year\": 1987,\n    \"price\": 300\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Wine attr DIFFERENT OWNER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Invalid wine owner. Only the wine’s owner can edit this wine\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine Z\",\n    \"type\": \"White\",\n    \"year\": 1987,\n    \"price\": 300\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Wine attr BAD ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"404 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"No wine with this wine_id found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine Z\",\n    \"type\": \"White\",\n    \"year\": 1987,\n    \"price\": 300\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/1234",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"1234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Wine attr MISSING ATTR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"400 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Missing one or more attributes. For a PUT request, all attributes must be given.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine Z\",\n    \"year\": 1987,\n    \"price\": 300\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Wine attr BAD ATTR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"let result = pm.response.json();",
+							"let result2 = result[\"Error\"];",
+							"let result3 = result2[0]",
+							"",
+							"//check at least one validation error message sent",
+							"pm.test(\"400 error message\", function () {",
+							"     pm.expect(result3).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine Z\",\n    \"type\": \"White\",\n    \"year\": 1987,\n    \"price\": \"300\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Wine attr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine Z\",\n    \"type\": \"White\",\n    \"year\": 1987,\n    \"price\": 300\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check wine changes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//check winery attributes changed to",
+							"pm.test(\"200 success response\", function () {",
+							"    pm.expect(pm.response.json()[\"type\"]).to.eq(\"White\");",
+							"    pm.expect(pm.response.json()[\"year\"]).to.eq(1987);",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Wine Z\");",
+							"    pm.expect(pm.response.json()[\"price\"]).to.eq(300);",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Wine attr BAD AUTH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"unauthorized\"]).to.eq(\"Invalid or missing token when trying to update a wine.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine H\",\n    \"type\": \"Mix\",\n    \"year\": 2003,\n    \"price\": 4000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Wine attr DIFFERENT OWNER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Invalid wine owner. Only the wine’s owner can delete this wine\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine H\",\n    \"type\": \"Mix\",\n    \"year\": 2003,\n    \"price\": 4000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Wine attr BAD ATTR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"let result = pm.response.json();",
+							"let result2 = result[\"Error\"];",
+							"let result3 = result2[0]",
+							"",
+							"//check at least one validation error message sent",
+							"pm.test(\"400 error message\", function () {",
+							"     pm.expect(result3).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"price\": \"4000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Wine attr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine H\",\n    \"type\": \"Mix\",\n    \"year\": 2003,\n    \"price\": 4000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check wine changes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//check winery attributes changed to",
+							"pm.test(\"200 success response\", function () {",
+							"    pm.expect(pm.response.json()[\"type\"]).to.eq(\"Mix\");",
+							"    pm.expect(pm.response.json()[\"year\"]).to.eq(2003);",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Wine H\");",
+							"    pm.expect(pm.response.json()[\"price\"]).to.eq(4000);",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UTIL - delete all wineries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//THIS IS A UTILITY FUNCTION FOR TESTING PURPOSES"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/deleteAll",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"deleteAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new winery Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"winery_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winery F\",\n    \"grapeType\": \"Red\",\n    \"numVarieties\": 3,\n    \"region\": \"Willamette Valley\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new wine Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"wine_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine A\",\n    \"type\": \"Merlot\",\n    \"year\": 2015,\n    \"price\": 50\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a wine to a winery BAD AUTH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"401 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"error\"]).to.eq(\"Unauthorized to view or edit this content. Please try again\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a wine to a winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a wine to a winery ALREADY IN WINERY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This wine is already assigned to a winery\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine Z\",\n    \"type\": \"White\",\n    \"year\": 1987,\n    \"price\": 300\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add 2nd wine",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"wine_id2\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine I\",\n    \"type\": \"Red\",\n    \"year\": 2000,\n    \"price\": 12\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add 2nd wine to a winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id2}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add 3rd wine (Pat)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"wine_id3\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"check for id created\", function () {",
+							"     pm.expect(pm.response.json()[\"id\"]).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wine J\",\n    \"type\": \"Mix\",\n    \"year\": 1987,\n    \"price\": 789\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wines",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add 3rd wine to a Baz's winery (DIFFERENT OWNER)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Invalid winery owner. Only the winery’s owner can add wines to this winery\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id3}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check 2 wines are in winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const checkWineNum = pm.response.json()[\"wineries\"];",
+							"const wines = checkWineNum[0];",
+							"console.log(wines);",
+							"",
+							"pm.test(\"200 success response - num of wines\", function () {",
+							"    pm.expect(wines[\"wines\"].length).to.eq(2);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/wineries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete 2nd wine from winery DIFFERENT OWNER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"403 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Invalid winery owner. Only the winery’s owner can delete wines from this winery\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id2}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete 2nd wine from winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id2}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete 2nd wine from winery ERROR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"404 error response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This wine_id doesn't exist or is does not have a winery associated\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id2}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete winery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint, wines PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 error response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts GET and POST. When trying to put, please include /wine_id, where wine_id is the ID of the wine you wish to update\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint, wineries PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 error response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts GET and POST. When trying to put, please include /winery_id, where winery_id is the ID of the winery you wish to update\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint, wines DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 error response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts GET and POST. When trying to delete, please include /wine_id, where wine_id is the ID of the wine you wish to delete\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint, wineries DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 error response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts GET and POST. When trying to delete, please include /winery_id, where winery_id is the ID of the winery you wish to delete\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint, wines PATCH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 error response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts GET and POST. When trying to patch, please include /wine_id, where wine_id is the ID of the wine you wish to update\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint, wineries PATCH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 error response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts GET and POST. When trying to patch, please include /winery_id, where winery_id is the ID of the winery you wish to update\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint, wineries PATCH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 error response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts PUT and DELETE.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint, wines POST WITH WINE ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 error response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts GET, DELETE, PUT AND PATCH. When trying to post, do not include a wine_id. One will be created for you upon completion.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint POST WITH WINERY ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 error response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts GET, DELETE, PUT AND PATCH. When trying to post, do not include a winery_id. One will be created for you upon completion.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint, wineries POST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 success response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts PUT and DELETE.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check bad endpoint, wineries GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//check at least more than 1 winery in colleciton",
+							"pm.test(\"405 success response\", function () {",
+							"    pm.expect(pm.response.json()[\"Error\"]).to.eq(\"This URL only accepts PUT and DELETE.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wineries/{{winery_id}}/wines/{{wine_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wineries",
+						"{{winery_id}}",
+						"wines",
+						"{{wine_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
