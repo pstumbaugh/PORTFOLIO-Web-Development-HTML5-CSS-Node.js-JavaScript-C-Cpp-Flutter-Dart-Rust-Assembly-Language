@@ -1,4 +1,5 @@
-** See api documentation for all notes and instructions on how to use API and Postman tests
+** See api documentation for all notes and instructions on how to use API and Postman tests.
+
 Please note - This limited term project that is hosted on Google Cloud and may or may not be running if you try to access it (either from login URL or through Postman collection tests). Running it locally will require API keys which are private to the owner of this project (Patrick Stumbaugh).
 
 
@@ -14,16 +15,15 @@ This app stores entities in the Google Cloud Datastore: Wineries and Wines.
 
 
 The API is modeled in this way:
+
 • A main user
-• Wineries
-o Every call to this winery must be made by the user that owns the winery (the
-user that created it).
-o If a wine (or wines) is associated with a specific winery, a “wines” section will
-show which wines belong to this winery. • Wines
-o Every call to a wine must be made by the user that owns the wine (the user that created it).
-o Wines may be added or deleted from a winery. When a wine is part of a winery and a GET request is made to that wine, the API will return a “producer” section showing which winery owns the wine.
+
+• Wineries - Every call to this winery must be made by the user that owns the winery (the user that created it). If a wine (or wines) is associated with a specific winery, a “wines” section will show which wines belong to this winery. 
+
+• Wines - Every call to a wine must be made by the user that owns the wine (the user that created it). Wines may be added or deleted from a winery. When a wine is part of a winery and a GET request is made to that wine, the API will return a “producer” section showing which winery owns the wine. 
+
 • Each call to an entity that requires an owner authentication will have to be supplied a Bearer token with the owner’s id_token (Postman collection handles this in test suite).
-• This API does not have endpoints with user id’s.
-o Only JWT’s (which are saved from id_token to postman environment variables
-for testing) are needed.
+
+• Only JWT’s (which are saved from id_token to postman environment variables for testing) are needed.
+
 • Every non-user entity endpoint is protected (wines and wineries).
