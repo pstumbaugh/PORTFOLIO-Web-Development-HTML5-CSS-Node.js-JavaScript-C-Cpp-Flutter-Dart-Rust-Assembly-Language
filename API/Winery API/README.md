@@ -1,4 +1,4 @@
-*See api documentation for all notes and instructions on how to use API and Postman tests
+** See api documentation for all notes and instructions on how to use API and Postman tests
 Please note - This limited term project that is hosted on Google Cloud and may or may not be running if you try to access it (either from login URL or through Postman collection tests). Running it locally will require API keys which are private to the owner of this project (Patrick Stumbaugh).
 
 
@@ -8,9 +8,9 @@ An owner may do any of the CRUD operations, including: Add wineries and wines (a
 
 Data Model:
 This app stores entities in the Google Cloud Datastore: Wineries and Wines.
-![wineries](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/GALLERIES.png?raw=true)
+![wineries](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Flutter-Dart-Rust-Assembly-Language/blob/main/API/Winery%20API/API_entities_pictures/Wineries.png?raw=true)
 
-![wines](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Rust-Assembly-Language/blob/main/Web%20Design/ArtGallery/EXAMPLES%20AND%20DOCUMENTS/GALLERIES.png?raw=true)
+![wines](https://github.com/pstumbaugh/PORTFOLIO-Web-Development-HTML5-CSS-Node.js-JavaScript-C-Cpp-Flutter-Dart-Rust-Assembly-Language/blob/main/API/Winery%20API/API_entities_pictures/Wines.png?raw=true)
 
 
 The API is modeled in this way:
